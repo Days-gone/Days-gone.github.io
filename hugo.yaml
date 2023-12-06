@@ -54,6 +54,10 @@ params:
     dateFormat:
         published: 2006/01/02
         lastUpdated: 2006/01/02
+    
+    taxonomies:
+        category: categories
+        tag: tags
 
     sidebar:
         emoji: 🍥

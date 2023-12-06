@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Test on Daysgone&#39;s Blog</title>
-        <link>https://days-gone.github.io/categories/test/</link>
-        <description>Recent content in Test on Daysgone&#39;s Blog</description>
+        <title>introduce on Daysgone&#39;s Blog</title>
+        <link>https://days-gone.github.io/tags/introduce/</link>
+        <description>Recent content in introduce on Daysgone&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Daysgone</copyright>
-        <lastBuildDate>Wed, 06 Dec 2023 09:01:58 +0000</lastBuildDate><atom:link href="https://days-gone.github.io/categories/test/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 06 Dec 2023 09:01:58 +0000</lastBuildDate><atom:link href="https://days-gone.github.io/tags/introduce/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hello!</title>
         <link>https://days-gone.github.io/p/hello/</link>
         <pubDate>Wed, 06 Dec 2023 09:01:58 +0000</pubDate>
