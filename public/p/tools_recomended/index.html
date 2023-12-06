@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Operate System Windows 大家都比较熟悉，暂且先不做介绍
+Linux Ubuntu 给出一个比较好的B站视频链接：
+Windows 和 Ubuntu 双系统的安装和卸载_哔哩哔哩_bilibili
+浏览器 浏览器作为访问web网页的客户端，使用体验的影响比较大，这里介绍一些浏览器（不包含mac端）。在安装时建议在你的C盘外的硬盘上开辟新的文件夹安装。
+Edge Download Microsoft Edge
+Firefox火狐 Firefox 火狐浏览器 - 全新、安全、快速 | 官方最新下载
+Chrome Google Chrome 网络浏览器
+搜索引擎 浏览器的体验其实也有很大部分决定于搜索引擎，如果你用过百度那么你一定知道，当你搜索某项事物时，排名最靠上的那几个就往往不是你想要的（多半是广告/一些“下崽”软件）。
+Bing 如果你使用的是Edge那么默认的搜索引擎就是bing，他是由微软提供的一款搜索引擎。
+Bing
+Google 全球最大的搜索引擎，但是搜索结果中含有英文结果比较多，比较锻炼大家的英文水平。缺点是需要使用科学上网。
+Google
+IDE ide是我们平常工作的地方，有一个你满意的ide环境会让你工作的更加舒心。在这里我们分语言进行推荐。
+C&#43;&#43; Dev-C&#43;&#43; 更适合新手入门快速部署本地C&#43;&#43;编译环境，省去了花费在环境配置上的经历，更专注于快速入手学习C&#43;&#43;的语法。
+Microsoft Visual Studio 由微软公司开发，为C/C&#43;&#43;提供专业的工作环境，对于初学者而言安装比较简单，无需自己配置太多东西。
+Visual Studio Code 也是由微软公司开发，但相对于MVS更加轻量级，拥有比较多的拓展包可供下载。是IDE中的万金油！使用我们之前推荐的搜索引擎进行下载即可。因为自己用的比较多的是VSC，所以就先介绍VScode吧。
+TRY VScode入门 简单了解 LSP即Language Server Protocol，LSP是少数基于JSON的语言服务器数据交换协定，由GitHub代管，并采用CC及MIT授权。该协定主要用来促进编辑器及语言服务器之间的互动，允许开 发人员在各种编辑器或整合开发环境中存取智慧型的程序语言工具，像是以符号搜寻、语法分析、自动完成代码、移至定义、描绘轮廓或重构等。LSP一个非常显著的功能就是智能感知（包括智能提示、错误检测、文件/函数跳转，IntelliSense）。
+C语言常见的LSP插件有：clangd、ccls、**MS的C&#43;&#43;**拓展。对于单个文件的C&#43;&#43;程序你可以采用MS的C&#43;&#43;拓展，或者Clangd，但对于多文件的C&#43;&#43;工程来说我们更推荐使用Clangd &#43; Cmake &#43; CmakeTools的编辑器设置，比较好用。
+配置自己的VScode-C&#43;&#43;环境。 首先安装好VScode，注意此处假设我们的电脑用户名不出现中文，因为似乎在最新的MingW中如果要使用LLDB进行调试那么你的C盘下的用户是不可以为中文名的，否则会调试的时候出现找不到LLDB插件的错误。
+假设我们已经安装好了VScode，并且将MingW下的bin目录和CMake添加到了环境变量中，那么接下来，打开VScode：
+1、点击拓展栏，搜索“Clangd”，并安装。
+2、搜索“CMake Tools”下载并安装。
+3、点击左下角的设置，并在搜索栏中输入“clangd path&amp;quot;，在对应的栏中输入clangd的具体位置（如果你已经添加了环境变量可以直接输入clangd，否则就写出完整的路径。）
+4、创建一个新的项目文件夹假设此处就叫做Project，在Project/ 下创建一个叫做CMakeLists.'>
+<title>Tools_recomended</title>
+
+<link rel='canonical' href='https://days-gone.github.io/p/tools_recomended/'>
+
+<link rel="stylesheet" href="/scss/style.min.45a5f9d8b40aa3686478e238b32e090fa29869c978c983e236c0570c1d6dda89.css"><meta property='og:title' content='Tools_recomended'>
+<meta property='og:description' content='Operate System Windows 大家都比较熟悉，暂且先不做介绍
+Linux Ubuntu 给出一个比较好的B站视频链接：
+Windows 和 Ubuntu 双系统的安装和卸载_哔哩哔哩_bilibili
+浏览器 浏览器作为访问web网页的客户端，使用体验的影响比较大，这里介绍一些浏览器（不包含mac端）。在安装时建议在你的C盘外的硬盘上开辟新的文件夹安装。
+Edge Download Microsoft Edge
+Firefox火狐 Firefox 火狐浏览器 - 全新、安全、快速 | 官方最新下载
+Chrome Google Chrome 网络浏览器
+搜索引擎 浏览器的体验其实也有很大部分决定于搜索引擎，如果你用过百度那么你一定知道，当你搜索某项事物时，排名最靠上的那几个就往往不是你想要的（多半是广告/一些“下崽”软件）。
+Bing 如果你使用的是Edge那么默认的搜索引擎就是bing，他是由微软提供的一款搜索引擎。
+Bing
+Google 全球最大的搜索引擎，但是搜索结果中含有英文结果比较多，比较锻炼大家的英文水平。缺点是需要使用科学上网。
+Google
+IDE ide是我们平常工作的地方，有一个你满意的ide环境会让你工作的更加舒心。在这里我们分语言进行推荐。
+C&#43;&#43; Dev-C&#43;&#43; 更适合新手入门快速部署本地C&#43;&#43;编译环境，省去了花费在环境配置上的经历，更专注于快速入手学习C&#43;&#43;的语法。
+Microsoft Visual Studio 由微软公司开发，为C/C&#43;&#43;提供专业的工作环境，对于初学者而言安装比较简单，无需自己配置太多东西。
+Visual Studio Code 也是由微软公司开发，但相对于MVS更加轻量级，拥有比较多的拓展包可供下载。是IDE中的万金油！使用我们之前推荐的搜索引擎进行下载即可。因为自己用的比较多的是VSC，所以就先介绍VScode吧。
+TRY VScode入门 简单了解 LSP即Language Server Protocol，LSP是少数基于JSON的语言服务器数据交换协定，由GitHub代管，并采用CC及MIT授权。该协定主要用来促进编辑器及语言服务器之间的互动，允许开 发人员在各种编辑器或整合开发环境中存取智慧型的程序语言工具，像是以符号搜寻、语法分析、自动完成代码、移至定义、描绘轮廓或重构等。LSP一个非常显著的功能就是智能感知（包括智能提示、错误检测、文件/函数跳转，IntelliSense）。
+C语言常见的LSP插件有：clangd、ccls、**MS的C&#43;&#43;**拓展。对于单个文件的C&#43;&#43;程序你可以采用MS的C&#43;&#43;拓展，或者Clangd，但对于多文件的C&#43;&#43;工程来说我们更推荐使用Clangd &#43; Cmake &#43; CmakeTools的编辑器设置，比较好用。
+配置自己的VScode-C&#43;&#43;环境。 首先安装好VScode，注意此处假设我们的电脑用户名不出现中文，因为似乎在最新的MingW中如果要使用LLDB进行调试那么你的C盘下的用户是不可以为中文名的，否则会调试的时候出现找不到LLDB插件的错误。
+假设我们已经安装好了VScode，并且将MingW下的bin目录和CMake添加到了环境变量中，那么接下来，打开VScode：
+1、点击拓展栏，搜索“Clangd”，并安装。
+2、搜索“CMake Tools”下载并安装。
+3、点击左下角的设置，并在搜索栏中输入“clangd path&amp;quot;，在对应的栏中输入clangd的具体位置（如果你已经添加了环境变量可以直接输入clangd，否则就写出完整的路径。）
+4、创建一个新的项目文件夹假设此处就叫做Project，在Project/ 下创建一个叫做CMakeLists.'>
+<meta property='og:url' content='https://days-gone.github.io/p/tools_recomended/'>
+<meta property='og:site_name' content='Daysgone&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-12-06T09:01:58&#43;00:00'/><meta property='article:modified_time' content='2023-12-06T09:01:58&#43;00:00'/>
+<meta name="twitter:title" content="Tools_recomended">
+<meta name="twitter:description" content="Operate System Windows 大家都比较熟悉，暂且先不做介绍
+Linux Ubuntu 给出一个比较好的B站视频链接：
+Windows 和 Ubuntu 双系统的安装和卸载_哔哩哔哩_bilibili
+浏览器 浏览器作为访问web网页的客户端，使用体验的影响比较大，这里介绍一些浏览器（不包含mac端）。在安装时建议在你的C盘外的硬盘上开辟新的文件夹安装。
+Edge Download Microsoft Edge
+Firefox火狐 Firefox 火狐浏览器 - 全新、安全、快速 | 官方最新下载
+Chrome Google Chrome 网络浏览器
+搜索引擎 浏览器的体验其实也有很大部分决定于搜索引擎，如果你用过百度那么你一定知道，当你搜索某项事物时，排名最靠上的那几个就往往不是你想要的（多半是广告/一些“下崽”软件）。
+Bing 如果你使用的是Edge那么默认的搜索引擎就是bing，他是由微软提供的一款搜索引擎。
+Bing
+Google 全球最大的搜索引擎，但是搜索结果中含有英文结果比较多，比较锻炼大家的英文水平。缺点是需要使用科学上网。
+Google
+IDE ide是我们平常工作的地方，有一个你满意的ide环境会让你工作的更加舒心。在这里我们分语言进行推荐。
+C&#43;&#43; Dev-C&#43;&#43; 更适合新手入门快速部署本地C&#43;&#43;编译环境，省去了花费在环境配置上的经历，更专注于快速入手学习C&#43;&#43;的语法。
+Microsoft Visual Studio 由微软公司开发，为C/C&#43;&#43;提供专业的工作环境，对于初学者而言安装比较简单，无需自己配置太多东西。
+Visual Studio Code 也是由微软公司开发，但相对于MVS更加轻量级，拥有比较多的拓展包可供下载。是IDE中的万金油！使用我们之前推荐的搜索引擎进行下载即可。因为自己用的比较多的是VSC，所以就先介绍VScode吧。
+TRY VScode入门 简单了解 LSP即Language Server Protocol，LSP是少数基于JSON的语言服务器数据交换协定，由GitHub代管，并采用CC及MIT授权。该协定主要用来促进编辑器及语言服务器之间的互动，允许开 发人员在各种编辑器或整合开发环境中存取智慧型的程序语言工具，像是以符号搜寻、语法分析、自动完成代码、移至定义、描绘轮廓或重构等。LSP一个非常显著的功能就是智能感知（包括智能提示、错误检测、文件/函数跳转，IntelliSense）。
+C语言常见的LSP插件有：clangd、ccls、**MS的C&#43;&#43;**拓展。对于单个文件的C&#43;&#43;程序你可以采用MS的C&#43;&#43;拓展，或者Clangd，但对于多文件的C&#43;&#43;工程来说我们更推荐使用Clangd &#43; Cmake &#43; CmakeTools的编辑器设置，比较好用。
+配置自己的VScode-C&#43;&#43;环境。 首先安装好VScode，注意此处假设我们的电脑用户名不出现中文，因为似乎在最新的MingW中如果要使用LLDB进行调试那么你的C盘下的用户是不可以为中文名的，否则会调试的时候出现找不到LLDB插件的错误。
+假设我们已经安装好了VScode，并且将MingW下的bin目录和CMake添加到了环境变量中，那么接下来，打开VScode：
+1、点击拓展栏，搜索“Clangd”，并安装。
+2、搜索“CMake Tools”下载并安装。
+3、点击左下角的设置，并在搜索栏中输入“clangd path&amp;quot;，在对应的栏中输入clangd的具体位置（如果你已经添加了环境变量可以直接输入clangd，否则就写出完整的路径。）
+4、创建一个新的项目文件夹假设此处就叫做Project，在Project/ 下创建一个叫做CMakeLists.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huc8ab8d6744ceb4e1438efc547344131f_490484_300x0_resize_box_3.png" width="300"
+                            height="271" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Daysgone&#39;s Blog</a></h1>
+            <h2 class="site-description">When the nights come!</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://days-gone.github.io/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://days-gone.github.io/" selected>English</option>
+                        
+                            <option value="https://days-gone.github.io/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#windows">Windows</a></li>
+    <li><a href="#linux">Linux</a>
+      <ol>
+        <li><a href="#ubuntu">Ubuntu</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#edge">Edge</a></li>
+    <li><a href="#firefox火狐">Firefox火狐</a></li>
+    <li><a href="#chrome">Chrome</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#bing">Bing</a></li>
+    <li><a href="#google">Google</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#c">C++</a>
+      <ol>
+        <li><a href="#dev-c">Dev-C++</a></li>
+        <li><a href="#microsoft-visual-studio">Microsoft Visual Studio</a></li>
+        <li><a href="#visual-studio-code">Visual Studio Code</a>
+          <ol>
+            <li><a href="#try-vscode入门">TRY VScode入门</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#markdown">Markdown</a>
+      <ol>
+        <li><a href="#typora">Typora</a></li>
+        <li><a href="#zettlr">Zettlr</a></li>
+      </ol>
+    </li>
+    <li><a href="#latex">LateX</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/tools_recomended/">Tools_recomended</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023/12/06</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="operate-system">Operate System</h1>
+<h2 id="windows">Windows</h2>
+<p>大家都比较熟悉，暂且先不做介绍</p>
+<h2 id="linux">Linux</h2>
+<h3 id="ubuntu">Ubuntu</h3>
+<p>给出一个比较好的B站视频链接：</p>
+<p><a class="link" href="https://www.bilibili.com/video/BV1554y1n7zv/?spm_id_from=333.337.search-card.all.click"  target="_blank" rel="noopener"
+    >Windows 和 Ubuntu 双系统的安装和卸载_哔哩哔哩_bilibili</a></p>
+<h1 id="浏览器">浏览器</h1>
+<p>浏览器作为访问web网页的客户端，使用体验的影响比较大，这里介绍一些浏览器（不包含mac端）。在安装时建议在你的C盘外的硬盘上开辟新的文件夹安装。</p>
+<h2 id="edge">Edge</h2>
+<p><a class="link" href="https://www.microsoft.com/en-us/edge/download?form=MA13FW"  target="_blank" rel="noopener"
+    >Download Microsoft Edge</a></p>
+<h2 id="firefox火狐">Firefox火狐</h2>
+<p><a class="link" href="http://www.firefox.com.cn/"  target="_blank" rel="noopener"
+    >Firefox 火狐浏览器 - 全新、安全、快速 | 官方最新下载</a></p>
+<h2 id="chrome">Chrome</h2>
+<p><a class="link" href="https://www.google.cn/chrome/index.html"  target="_blank" rel="noopener"
+    >Google Chrome 网络浏览器</a></p>
+<h1 id="搜索引擎">搜索引擎</h1>
+<p>浏览器的体验其实也有很大部分决定于搜索引擎，如果你用过百度那么你一定知道，当你搜索某项事物时，排名最靠上的那几个就往往不是你想要的（多半是广告/一些“下崽”软件）。</p>
+<h2 id="bing">Bing</h2>
+<p>如果你使用的是Edge那么默认的搜索引擎就是bing，他是由微软提供的一款搜索引擎。</p>
+<p><a class="link" href="www.bing.com" >Bing</a></p>
+<h2 id="google">Google</h2>
+<p>全球最大的搜索引擎，但是搜索结果中含有英文结果比较多，比较锻炼大家的英文水平。缺点是需要使用科学上网。</p>
+<p><a class="link" href="[www.google.com]%28https://www.google.com/%29" >Google</a></p>
+<h1 id="ide">IDE</h1>
+<p>ide是我们平常工作的地方，有一个你满意的ide环境会让你工作的更加舒心。在这里我们分语言进行推荐。</p>
+<h2 id="c">C++</h2>
+<h3 id="dev-c">Dev-C++</h3>
+<p>更适合新手入门快速部署本地C++编译环境，省去了花费在环境配置上的经历，更专注于快速入手学习C++的语法。</p>
+<h3 id="microsoft-visual-studio">Microsoft Visual Studio</h3>
+<p>由微软公司开发，为C/C++提供专业的工作环境，对于初学者而言安装比较简单，无需自己配置太多东西。</p>
+<h3 id="visual-studio-code">Visual Studio Code</h3>
+<p>也是由微软公司开发，但相对于MVS更加轻量级，拥有比较多的拓展包可供下载。是IDE中的万金油！使用我们之前推荐的搜索引擎进行下载即可。因为自己用的比较多的是VSC，所以就先介绍VScode吧。</p>
+<h4 id="try-vscode入门">TRY VScode入门</h4>
+<h5 id="简单了解">简单了解</h5>
+<p>LSP即Language Server Protocol，LSP是少数基于JSON的语言服务器数据交换协定，由GitHub代管，并采用CC及MIT授权。该协定主要用来促进编辑器及语言服务器之间的互动，允许开 发人员在各种编辑器或整合开发环境中存取智慧型的程序语言工具，像是以符号搜寻、语法分析、自动完成代码、移至定义、描绘轮廓或重构等。LSP一个非常显著的功能就是智能感知（包括智能提示、错误检测、文件/函数跳转，IntelliSense）。</p>
+<p>C语言常见的LSP插件有：<strong>clangd</strong>、<strong>ccls</strong>、**MS<strong><strong>的</strong></strong>C++**<strong>拓展</strong>。对于单个文件的C++程序你可以采用MS的C++拓展，或者Clangd，但对于多文件的C++工程来说我们更推荐使用Clangd + Cmake + CmakeTools的编辑器设置，比较好用。</p>
+<h5 id="配置自己的vscode-c环境">配置自己的VScode-C++环境。</h5>
+<p>首先安装好VScode，注意此处假设我们的电脑用户名不出现中文，因为似乎在最新的MingW中如果要使用LLDB进行调试那么你的C盘下的用户是不可以为中文名的，否则会调试的时候出现找不到LLDB插件的错误。</p>
+<p>假设我们已经安装好了VScode，并且将MingW下的bin目录和CMake添加到了环境变量中，那么接下来，打开VScode：</p>
+<p>1、点击拓展栏，搜索“Clangd”，并安装。</p>
+<p>2、搜索“CMake Tools”下载并安装。</p>
+<p>3、点击左下角的设置，并在搜索栏中输入“clangd path&quot;，在对应的栏中输入clangd的具体位置（如果你已经添加了环境变量可以直接输入clangd，否则就写出完整的路径。）</p>
+<p>4、创建一个新的项目文件夹假设此处就叫做Project，在Project/ 下创建一个叫做CMakeLists.txt的文件，注意大小写。之后我们就可以使用CMakeLists.txt来管理我们这个项目的构建过程了。</p>
+<p>5、创建几个新的文件夹满足：Project/src, Project/build, Project/include这样的结构，在我们的src文件夹下面创建一个新的cpp文件，假如叫做main.cpp。那么在main.cpp中输入:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;hello,c++&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下来修改CMakeLists.txt:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cmake_minimum_required(VERSION 3.12)
+</span></span><span class="line"><span class="cl">project(BoostExample)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set(CMAKE_CXX_STANDARD 14)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Find Boost components
+</span></span><span class="line"><span class="cl"># find_package(Boost REQUIRED COMPONENTS filesystem)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Add the include directory
+</span></span><span class="line"><span class="cl"># 我们自己写的头文件可以放在这个include目录下面
+</span></span><span class="line"><span class="cl">include_directories(include)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Add the executable target
+</span></span><span class="line"><span class="cl"># 生成可执行文件即能够运行的程序
+</span></span><span class="line"><span class="cl">add_executable(result src/main.cpp)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此处只是做了一个非常简单的介绍，具体的文件可以阅读Cmake的文档。</p>
+<p>6、重新打开VScode，注意点击左上角的“文件-&gt;打开文件夹-&gt;选中Project（这个文件夹的一级子目录下应该有个CMakeLists.txt）。打开之后，clangd和cmaketools会自动扫描可使用的套间（clang++、g++）等，选择你的套件。之后在左下角往右浏览找到build或者一个三角形（像播放按钮的形状）并点击，；build只生成可执行文件，而运行则会生成并执行该文件。</p>
+<h1 id="记笔记">记笔记</h1>
+<p>这里我们说的是在学习过程中记录blog式的笔记软件推荐：</p>
+<h2 id="markdown">Markdown</h2>
+<p>Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。 &ndash; markdown official introduction</p>
+<p><a class="link" href="https://markdown.com.cn/basic-syntax/"  target="_blank" rel="noopener"
+    >Markdown 基本语法 | Markdown 官方教程</a></p>
+<h3 id="typora">Typora</h3>
+<p>给出一些文章链接来介绍吧：</p>
+<p><a class="link" href="https://zhuanlan.zhihu.com/p/293557841"  target="_blank" rel="noopener"
+    >2020Typora小白完全使用教程</a></p>
+<p><a class="link" href="https://www.geekku.com/software/1533.html"  target="_blank" rel="noopener"
+    >typora是什么软件_一款好用的轻量级Markdown编辑器 - 极客库</a></p>
+<h3 id="zettlr">Zettlr</h3>
+<h2 id="latex">LateX</h2>
+<p>latex适合用于写一些论文/报告之类的任务，如果你也对word的使用不够熟悉并烦恼于它的布局配置问题的话，不如学习latex来完成你的任务，初学需要花费时间了解latex的使用方法，但一旦学会就会省去很多时间并轻松完成精美的布局设置。</p>
+<p>因为自己只使用过线上的，所以推荐一下这个网站。</p>
+<p><a class="link" href="https://www.overleaf.com/"  target="_blank" rel="noopener"
+    >Overleaf, Online LaTeX Editor</a></p>
+<p>Tutorial:</p>
+<p><a class="link" href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes"  target="_blank" rel="noopener"
+    >Learn LaTeX in 30 minutes</a></p>
+<h1 id="thank-u-for-reading">Thank U For Reading</h1>
+<p><img src="/p/tools_recomended/test1.jpg"
+	width="1004"
+	height="1420"
+	srcset="/p/tools_recomended/test1_hucf123d8be28712e1e26a5fe9ae4d1072_190423_480x0_resize_q75_box.jpg 480w, /p/tools_recomended/test1_hucf123d8be28712e1e26a5fe9ae4d1072_190423_1024x0_resize_q75_box.jpg 1024w"
+	loading="lazy"
+	
+		alt="喜多！"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="70"
+		data-flex-basis="169px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Daysgone
+    </section>
+    
+    <section class="powerby">
+        
+            使用 {{ .Generator }} 构建 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/ribbon.min.js"
+    integrity="sha384-UEK8ZiP3VgFNP8KnKMKDmd4pAUAOJ59Y2Jo3ED2Z5qKQf6HLHovMxq7Beb9CLPUe"
+    crossorigin="anonymous"
+    size="300"
+    alpha="0.6"
+    zindex="-1"
+    defer
+></script>
+
+    </body>
+</html>
