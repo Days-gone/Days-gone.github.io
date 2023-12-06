@@ -13,7 +13,8 @@
         <pubDate>Wed, 06 Dec 2023 09:01:58 +0000</pubDate>
         
         <guid>https://days-gone.github.io/p/hello/</guid>
-        <description>&lt;img src="https://days-gone.github.io/p/hello/test1.jpg" alt="Featured image of post Hello!" /&gt;</description>
+        <description>&lt;img src="https://days-gone.github.io/p/hello/test1.jpg" alt="Featured image of post Hello!" /&gt;&lt;p&gt;Hello, Welcome to my blog!&lt;/p&gt;
+</description>
         </item>
         
     </channel>
