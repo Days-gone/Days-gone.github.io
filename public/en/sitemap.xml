@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://days-gone.github.io/</loc>
+    <lastmod>2023-12-19T03:11:31+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://days-gone.github.io/zh-cn/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://days-gone.github.io/"
+                />
+  </url><url>
+    <loc>https://days-gone.github.io/tags/educoder/</loc>
+    <lastmod>2023-12-19T03:11:31+00:00</lastmod>
+  </url><url>
+    <loc>https://days-gone.github.io/p/educoder13/</loc>
+    <lastmod>2023-12-19T03:11:31+00:00</lastmod>
+  </url><url>
+    <loc>https://days-gone.github.io/post/</loc>
+    <lastmod>2023-12-19T03:11:31+00:00</lastmod>
+  </url><url>
+    <loc>https://days-gone.github.io/tags/</loc>
+    <lastmod>2023-12-19T03:11:31+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://days-gone.github.io/zh-cn/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://days-gone.github.io/tags/"
+                />
+  </url><url>
     <loc>https://days-gone.github.io/categories/</loc>
     <lastmod>2023-12-06T09:01:58+00:00</lastmod>
     <xhtml:link
@@ -15,40 +50,11 @@
                 href="https://days-gone.github.io/categories/"
                 />
   </url><url>
-    <loc>https://days-gone.github.io/</loc>
-    <lastmod>2023-12-06T09:01:58+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://days-gone.github.io/zh-cn/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://days-gone.github.io/"
-                />
-  </url><url>
     <loc>https://days-gone.github.io/p/hello/</loc>
     <lastmod>2023-12-06T09:01:58+00:00</lastmod>
   </url><url>
     <loc>https://days-gone.github.io/tags/introduce/</loc>
     <lastmod>2023-12-06T09:01:58+00:00</lastmod>
-  </url><url>
-    <loc>https://days-gone.github.io/post/</loc>
-    <lastmod>2023-12-06T09:01:58+00:00</lastmod>
-  </url><url>
-    <loc>https://days-gone.github.io/tags/</loc>
-    <lastmod>2023-12-06T09:01:58+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://days-gone.github.io/zh-cn/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://days-gone.github.io/tags/"
-                />
   </url><url>
     <loc>https://days-gone.github.io/categories/test/</loc>
     <lastmod>2023-12-06T09:01:58+00:00</lastmod>
